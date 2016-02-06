@@ -16,26 +16,7 @@ $action = $url[2];
 
 // ROUTING
 
-// если запись
-/*
-if ($module == 'r' && isset($action)) {
-    if (preg_match("/^[0-9]+\z/", $action)) {
-        $is_single = true;
-        $content_id = $action;
-    }
-    else $error = 'Ошибка';
-}
-// если категория
-
-else if (isset($module) && !isset($action)) {
-    $is_module = true;
-    if (preg_match("/^[0-9]*\z/", $module))
-        $is_class = true;
-    else if (preg_match("/^[0-9]{1,2}-[a-zA-Z]*\z/", $module))
-        $is_book = true;
-    else $error = 'Ошибка';
-}*/
-
+// Если запись
 if ($module == 'r' && preg_match("/^[0-9]+\z/", $action)){
     $is_single = true;
     $content_id = $action;
@@ -52,7 +33,7 @@ if ($module == 'r' && preg_match("/^[0-9]+\z/", $action)){
     include "footer.php";
     
 }
-
+// Если раздел
 else if (!isset($action) && preg_match("/^[0-9]*\z/", $module)) {
     $is_class = true;
     
@@ -76,46 +57,3 @@ else {
     echo $error;
     include "footer.php";
 }
-
-/*
-if (isset($module) && !isset($action)){
-    $is_module = true;
-    if (preg_match("/^[0-9]*\z/", $module)){
-        $is_class = true;
-        include "dbwork/class_sql.php";
-        include "header.php";
-        include "category.php";
-        include "footer.php";
-        
-        echo "категория класса";
-    }
-    else if (preg_match("/^[0-9]{1,2}-[a-zA-Z]*\z/", $module)){
-        $is_book = true;
-        include "dbwork/book_sql.php";
-        include "header.php";
-        include "category.php";
-        include "footer.php";
-        
-        echo "категория решебника";
-    }
-    else echo "Ошибка";
-}
-
-
-else if ($module == 'r' && isset($action)){
-    
-    
-    if (preg_match("/^[0-9]+\z/", $action)) {
-        $is_single = true;
-        include "dbwork/single_sql.php";
-        
-        include "header.php";
-        include "single.php";
-        include "footer.php";
-        
-        echo "запись сайта";
-    }
-    else echo "Ошибка";
-}
-else echo "Ошибка";
-*/
